@@ -2,17 +2,14 @@ services:
   - type: web
     name: sundaram-whatsapp-agent
     runtime: python
-    plan: starter
+    plan: free
+    region: singapore
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1
     healthCheckPath: /health
-    disk:
-      name: agent-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: DATABASE_PATH
-        value: /var/data/agent.sqlite3
+        value: data/agent.sqlite3
       - key: WHATSAPP_VERIFY_TOKEN
         sync: false
       - key: META_APP_SECRET
@@ -27,3 +24,7 @@ services:
         sync: false
       - key: AI_ENABLED
         value: false
+      - key: WORKER_ENABLED
+        value: false
+      - key: PYTHON_VERSION
+        value: 3.12.14
