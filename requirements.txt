@@ -1,0 +1,5 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.1
+ngrok>=1.4.0
